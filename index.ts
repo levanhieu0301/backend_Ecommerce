@@ -14,6 +14,11 @@ app.get('/', (req:Request, res:Response) => {
     pageTitle: "Trang chủ"
   })
 })
+app.get('/admin/dashboard', (req:Request, res:Response) => {
+  res.render('admin/pages/dashboard', {
+    pageTitle: "Tổng quan"
+  })
+})
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
