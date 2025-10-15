@@ -1,5 +1,7 @@
-import express, {Request, Response} from "express";
+import express from "express";
 import path from "path";
+import routesAdmin from "./routes/admin/index.route"
+import routesClient from "./routes/client/index.route"
 const app = express()
 const port = 5000
 
@@ -9,16 +11,8 @@ app.set('view engine', 'pug')
 // Tích hợp file tĩnh 
 app.use(express.static(path.join(__dirname, "public")))
 
-app.get('/', (req:Request, res:Response) => {
-  res.render('client/pages/home', {
-    pageTitle: "Trang chủ"
-  })
-})
-app.get('/admin/dashboard', (req:Request, res:Response) => {
-  res.render('admin/pages/dashboard', {
-    pageTitle: "Tổng quan"
-  })
-})
+app.use("/admin", routesAdmin)
+app.use("/", routesClient)
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
